@@ -1,0 +1,88 @@
+/* workbuddy-manager component layer: New York/shadcn tokens and motion */
+:root {
+  --wb-background: oklch(1 0 0);
+  --wb-foreground: oklch(.141 .005 285.823);
+  --wb-muted: oklch(.967 .001 286.375);
+  --wb-muted-foreground: oklch(.552 .016 285.938);
+  --wb-border: oklch(.92 .004 286.32);
+  --wb-primary: oklch(.21 .006 285.885);
+  --wb-ring: oklch(.705 .015 286.067);
+  --wb-radius: 20px;
+}
+* { box-sizing:border-box; }
+html { background:var(--wb-background); }
+body { min-height:100vh; background:var(--wb-background); color:var(--wb-foreground); font-family:Inter,'Noto Sans SC','Segoe UI','Microsoft YaHei',system-ui,sans-serif; letter-spacing:-.01em; }
+body:before { content:""; position:fixed; inset:0; pointer-events:none; background:radial-gradient(circle at 50% -20%,rgba(0,0,0,.035),transparent 42%); }
+aside { position:fixed; z-index:30; inset:auto 50% 18px auto; transform:translateX(50%); width:auto; height:64px; padding:8px 12px; border:1px solid color-mix(in srgb,var(--wb-border) 72%,transparent); border-radius:999px; background:color-mix(in srgb,var(--wb-background) 78%,transparent); box-shadow:0 18px 45px rgba(0,0,0,.12); backdrop-filter:blur(18px); display:flex; align-items:center; }
+aside .brand, aside .sub, aside .bottom { display:none; }
+aside nav { display:flex; gap:7px; align-items:center; padding:0; border:0; background:transparent; }
+aside nav button { border:0; border-radius:999px; padding:10px 15px; background:transparent; color:var(--wb-muted-foreground); font-size:12px; font-weight:600; white-space:nowrap; transition:background .2s ease,color .2s ease,transform .2s ease; }
+aside nav button:hover, aside nav button:focus-visible { background:var(--wb-muted); color:var(--wb-foreground); transform:translateY(-1px); }
+main { width:min(100% - 32px, 1280px); margin:0 auto; padding:48px 0 120px; }
+header { border:0; padding:0; align-items:flex-end; margin-bottom:24px; }
+h1 { font-size:20px; font-weight:650; letter-spacing:-.035em; margin-bottom:5px; }
+header p { font-size:12px; color:var(--wb-muted-foreground); }
+.actions { gap:8px; }
+button,input,select { border-color:var(--wb-border); border-radius:12px; background:var(--wb-background); transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease; }
+button { font-size:12px; font-weight:550; }
+button:hover:not(:disabled) { background:var(--wb-muted); border-color:color-mix(in srgb,var(--wb-border) 65%,var(--wb-foreground)); }
+button:active:not(:disabled) { transform:scale(.98); }
+button.primary { background:var(--wb-primary); border-color:var(--wb-primary); border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,.12); }
+.stats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0 0 16px; }
+.card { border:0; border-radius:var(--wb-radius); padding:18px; background:var(--wb-muted); }
+.stats .card { min-height:112px; background:var(--wb-muted); animation:wb-rise .35s ease both; }
+.stats .card:nth-child(2){animation-delay:.04s}.stats .card:nth-child(3){animation-delay:.08s}.stats .card:nth-child(4){animation-delay:.12s}
+.label { color:var(--wb-muted-foreground); font-size:11px; }
+.value { margin:9px 0 4px; font-size:26px; font-weight:650; letter-spacing:-.04em; }
+.value.small { font-size:18px; letter-spacing:-.02em; }
+.connection { display:flex; gap:12px; align-items:center; margin:0 0 16px; padding:16px 18px; background:var(--wb-muted); }
+.connection strong { font-size:13px; font-weight:600; }
+.connection a { margin-left:auto; color:var(--wb-muted-foreground); font-size:12px; }
+.dot { width:9px; height:9px; border-radius:999px; background:#a1a1aa; box-shadow:0 0 0 5px rgba(161,161,170,.12); }
+.dot.on { background:#16a34a; box-shadow:0 0 0 5px rgba(22,163,74,.12); }
+.dot.busy { background:#d97706; animation:wb-pulse 1.4s ease infinite; }
+.toolbar { gap:8px; margin-bottom:12px; }
+.toolbar h2 { font-size:14px; font-weight:600; }
+.toolbar input,.toolbar select { padding:8px 11px; font-size:12px; }
+.tablebox { border:0; border-radius:var(--wb-radius); background:var(--wb-muted); overflow:hidden; box-shadow:none; }
+table { min-width:1050px; border-collapse:separate; border-spacing:0; }
+th { height:42px; background:transparent; color:var(--wb-muted-foreground); font-size:10px; text-transform:uppercase; letter-spacing:.04em; }
+td { height:62px; border-top:1px solid color-mix(in srgb,var(--wb-border) 70%,transparent); font-size:12px; }
+tbody tr { transition:background .18s ease; }
+tbody tr:hover,tbody tr.active { background:color-mix(in srgb,var(--wb-background) 68%,transparent); }
+.pill { border-radius:999px; padding:4px 8px; font-size:10px; background:var(--wb-background); }
+.good { color:#15803d; background:rgba(22,163,74,.08); border-color:rgba(22,163,74,.16); }
+.selection { padding:10px 0; }
+.selection button { background:transparent; border:0; padding:7px 10px; }
+.selection button.primary { background:var(--wb-primary); color:#fff; border:1px solid var(--wb-primary); box-shadow:0 4px 12px rgba(0,0,0,.12); }
+.selection button.primary:disabled { background:color-mix(in srgb,var(--wb-primary) 42%,var(--wb-muted)); color:color-mix(in srgb,var(--wb-foreground) 52%,transparent); border-color:transparent; opacity:1; }
+.star { width:28px; height:28px; display:inline-grid; place-items:center; padding:0; margin-right:7px; border:1px solid var(--wb-border); border-radius:999px; background:var(--wb-background); color:var(--wb-muted-foreground); font-size:15px; line-height:1; vertical-align:middle; transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease; }
+.star:hover { color:#c2415a; border-color:rgba(194,65,90,.3); background:rgba(194,65,90,.07); }
+tbody tr td:first-child + td .star { color:#b7791f; }
+dialog { border:1px solid var(--wb-border); border-radius:20px; background:var(--wb-background); padding:24px; box-shadow:0 28px 100px rgba(0,0,0,.2); }
+dialog::backdrop { background:rgba(15,23,42,.28); backdrop-filter:blur(8px); }
+dialog { scrollbar-gutter:stable; padding-right:30px; }
+dialog::-webkit-scrollbar { width:8px; }
+dialog::-webkit-scrollbar-track { margin:12px 0; background:transparent; }
+dialog::-webkit-scrollbar-thumb { border:2px solid transparent; border-radius:999px; background:color-mix(in srgb,var(--wb-muted-foreground) 48%,transparent); background-clip:padding-box; }
+dialog select { padding-left:14px; padding-right:38px; }
+.log-tabs { display:flex; gap:6px; margin:14px 0 10px; padding:4px; border-radius:12px; background:var(--wb-muted); }
+.log-tabs button { border:0; border-radius:9px; background:transparent; padding:7px 11px; color:var(--wb-muted-foreground); }
+.log-tabs button.active { background:var(--wb-background); color:var(--wb-foreground); box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.logs-output { max-height:420px; min-height:180px; overflow:auto; margin:0; padding:14px; border:1px solid var(--wb-border); border-radius:14px; background:color-mix(in srgb,var(--wb-muted) 72%,var(--wb-background)); color:var(--wb-foreground); font:11px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace; white-space:pre-wrap; overflow-wrap:anywhere; }
+.field { gap:7px; margin:16px 0; font-size:12px; color:var(--wb-muted-foreground); }
+.field input,.field select { margin-top:4px; width:100%; }
+.dialog-actions { margin-top:20px; }
+.login-screen { background:var(--wb-muted); }
+.login-card { border:0; border-radius:24px; box-shadow:0 20px 70px rgba(0,0,0,.08); }
+.login-card h1 { font-size:22px; }
+#toast { border-radius:14px; box-shadow:0 14px 45px rgba(0,0,0,.18); }
+footer { margin-top:14px; }
+@keyframes wb-rise { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:none} }
+@keyframes wb-pulse { 50%{opacity:.45;transform:scale(.82)} }
+@media(min-width:900px){ .stats{grid-template-columns:repeat(4,minmax(0,1fr));}.stats .card:nth-child(4){grid-column:auto} }
+@media(max-width:700px){ main{width:calc(100% - 24px);padding-top:28px}.actions{width:100%}.actions button{flex:1}.connection a{display:none} aside{bottom:12px;max-width:calc(100% - 24px);overflow:auto} aside nav button{padding:9px 11px} }
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+dialog { scrollbar-gutter:stable; padding-right:30px; }
+dialog select { padding-left:14px; padding-right:38px; }
+
