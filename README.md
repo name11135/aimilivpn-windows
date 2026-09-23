@@ -1,30 +1,41 @@
 # AimiliVPN Windows
 
-Windows 鍘熺敓 VPN 鑺傜偣绠＄悊鍣紝浣跨敤 OpenVPN 2.6 + Wintun锛屾彁渚涜妭鐐规洿鏂般€佷綇瀹?鍥哄畾瀹藉甫鍊欓€夌瓫閫夈€佺鍙ｆ鏌ャ€乂PN 鍑哄彛楠岃瘉銆佽嚜鍔ㄦ晠闅滃垏鎹㈠拰 FlClash 璁㈤槄銆?
-## 鍔熻兘
+Native Windows VPN node manager built around OpenVPN 2.6 and Wintun. It provides node discovery, broadband candidate filtering, reachability checks, VPN exit verification, automatic failover, and a FlClash subscription endpoint.
 
-- 浠?VPNGate 鍙婇暅鍍忔簮鍚堝苟鏇存柊鑺傜偣锛屾瘡灏忔椂鑷姩鍒锋柊
-- 鍥藉銆佽繍钀ュ晢銆佸欢杩熴€佹敹钘忓拰鍊欓€夌被鍨嬬瓫閫?- 鎵归噺 TCP 鍙揪鎬ф鏌ュ拰閫愯妭鐐?VPN 鍑哄彛楠岃瘉
-- 鑷姩鍒囨崲澶辫触鑺傜偣锛屼繚鐣欏凡楠岃瘉鑺傜偣浼樺厛绾?- HTTP / SOCKS5 鏈満浠ｇ悊锛歚127.0.0.1:7928`
-- FlClash 璁㈤槄锛歚http://127.0.0.1:7929/clash`
-- 绠＄悊椤甸潰锛歚http://127.0.0.1:8686/`
-- 鏈嶅姟鏃ュ織銆丱penVPN 鏃ュ織銆佽瘖鏂拰杩愯鐘舵€佹煡鐪?
-## 浣跨敤
+## Features
 
-1. 鍙抽敭浠ョ鐞嗗憳韬唤杩愯 `Start.cmd`銆?2. 娴忚鍣ㄦ墦寮€ `http://127.0.0.1:8686/`锛屼娇鐢?`config/Login.txt` 涓殑璐﹀彿瀵嗙爜鐧诲綍銆?3. 鐐瑰嚮鈥滄洿鏂拌妭鐐光€濊幏鍙栨渶鏂板垪琛紱鈥滄鏌モ€濆彧浠ｈ〃 TCP 绔彛鍙揪锛屼笉绛変簬 VPN 鍑哄彛鍙敤銆?4. 杩炴帴鎴愬姛骞舵樉绀衡€滃嚭鍙ｅ凡楠岃瘉杩為€氣€濆強鍑哄彛 IP 鍚庯紝鍐嶅湪 FlClash 涓鍏ヨ闃呭湴鍧€銆?5. 杩愯 `Stop.cmd` 鍙仠姝㈡湇鍔″拰 VPN 瀛愯繘绋嬨€?
-## 鏁版嵁鐩綍
+- Merges VPNGate and mirror feeds; refreshes automatically every hour
+- Country, ISP, latency, favorite, and candidate filters
+- Batch TCP reachability checks and per-node VPN exit verification
+- Automatic failover with previously verified nodes preferred
+- Local HTTP and SOCKS5 proxy at `127.0.0.1:7928`
+- FlClash subscription at `http://127.0.0.1:7929/clash`
+- Management UI at `http://127.0.0.1:8686/`
+- Service logs, OpenVPN logs, diagnostics, and runtime status
 
-| 鐩綍 | 鍐呭 |
-| --- | --- |
-| `config` | 璁剧疆銆佹敹钘忓拰绠＄悊璐﹀彿 |
-| `data` | 鑺傜偣婧愩€両P 淇℃伅鍜屽畬鏁磋妭鐐圭紦瀛?|
-| `runtime` | OpenVPN/Wintun 缁勪欢鍜屼复鏃惰繍琛岀姸鎬?|
-| `logs` | 鏈嶅姟鍙?OpenVPN 鏃ュ織 |
+## Usage
 
-鑺傜偣缂撳瓨浼氬湪鏇存柊鍚庝繚瀛樺埌 `data/nodes-cache.json`銆備笅娆″惎鍔ㄤ細浼樺厛鎷夊彇鏂拌妭鐐癸紝鎷夊彇澶辫触鏃朵粠缂撳瓨鎭㈠銆?
-## 鏋勫缓
+1. Run `Start.cmd` as Administrator.
+2. Open `http://127.0.0.1:8686/` and sign in with `config/Login.txt`.
+3. Click Refresh to fetch nodes. Check only means that the TCP port is reachable; it does not prove that VPN or the exit works.
+4. Use a node only after the UI reports a verified exit IP.
+5. Import `http://127.0.0.1:7929/clash` into FlClash.
+6. Run `Stop.cmd` to stop the service and its VPN child process.
 
-闇€瑕?Go 鐜銆傝繍琛?`Build.cmd` 鐢熸垚 `aimilivpn.exe`銆俉indows 杩愯鐗堥渶瑕佺鐞嗗憳鏉冮檺锛屼互渚垮垱寤?Wintun 閫傞厤鍣ㄣ€?
-## 璇存槑
+## Data layout
 
-VPNGate 鑺傜偣鏉ヨ嚜鍏紑蹇楁効鑰呯綉缁滐紝鑺傜偣鍙敤鎬т細闅忔椂闂村彉鍖栥€俆CP 鍙揪涓嶄唬琛?VPN 鎻℃墜鎴栧嚭鍙ｉ獙璇佹垚鍔燂紱鏈粡鍑哄彛楠岃瘉鐨勮妭鐐逛笉浼氳浠ｇ悊杞彂浣跨敤銆?
+- `config`: settings, favorites, and the management account
+- `data`: feed data, IP metadata, and the complete node cache
+- `runtime`: OpenVPN/Wintun files and temporary runtime state
+- `logs`: service and OpenVPN logs
+
+After every refresh, the merged node list is saved to `data/nodes-cache.json`. On the next start the app fetches fresh data; if the feeds are unavailable, it restores the cached list.
+
+## Build
+
+Install Go and run `Build.cmd` to produce `aimilivpn.exe`. The Windows runtime needs Administrator privileges to create the Wintun adapter.
+
+## Notes
+
+VPNGate nodes come from a public volunteer network and their availability changes over time. A reachable TCP port is not proof of a working VPN handshake or exit. Nodes without a verified exit are rejected by the proxy.
+
