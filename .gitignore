@@ -1,0 +1,12 @@
+config/
+data/
+logs/
+runtime/state/
+*.tmp
+*.log
+*.pid
+*.token
+*.ovpn
+vpngate.auth
+AimiliVPN-FlClash.yaml
+
